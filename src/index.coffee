@@ -128,13 +128,13 @@ class Klout
   getUser: (userId, callback)->
     @_getUserResource userId, "/user.json/:kloutId", callback
 
-  getScore: (userId, callback)->
+  getUserScore: (userId, callback)->
     @_getUserResource userId, "/user.json/:kloutId/score", callback
 
-  getTopics: (userId, callback)->
+  getUserTopics: (userId, callback)->
     @_getUserResource userId, "/user.json/:kloutId/topics", callback
 
-  getInfluence: (userId, callback)->
+  getUserInfluence: (userId, callback)->
     @_getUserResource userId, "/user.json/:kloutId/influence", callback
 
 

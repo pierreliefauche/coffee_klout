@@ -7,7 +7,7 @@ Accepts an optional Redis client to cache Klout API responses, especially identi
 
 Based on [node_klout](http://github.com/cojohn/node_klout) by Christopher John.
 
-# The userId hash
+## The userId hash
 
 Most Klout endpoints use the Klout ID to get information about a user.
 This Klout ID is not directly related to the user’s other networks identities.
@@ -83,10 +83,6 @@ klout.getUserTopics(klout_id_or_user_id_hash, function(error, klout_response) {
 
 klout.getUserInfluence(klout_id_or_user_id_hash, function(error, klout_response) {
 	// Returns a user's influence object
-});
-
-klout.getUserNetworkHandle(klout_id_or_user_id_hash, function(error, klout_response) {
-	// Returns a user's network (Twitter) identifier
 });
 ```
 
