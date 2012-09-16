@@ -1,7 +1,7 @@
 {
   "name": "coffee_klout",
   "description": "Klout API v2 wrapper, Coffee style.",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "author": "Pierre-Élie Fauché <coffee_klout@pierre-elie.me>",
   "homepage": "https://github.com/pierreliefauche/coffee_klout",
   "engines": {
@@ -25,7 +25,6 @@
     "url": "git://github.com/pierreliefauche/coffee_klout.git"
   },
   "dependencies": {
-    "request": ">=2.11.1",
-    "underscore": ">=1.3.3"
+    "request": ">=2.11.1"
   }
 }
