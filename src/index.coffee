@@ -138,4 +138,4 @@ class Klout
     @_getUserResource userId, "/user.json/:kloutId/influence", callback
 
 
-exports.Klout = Klout
+module.exports = Klout
