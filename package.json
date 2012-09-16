@@ -1,0 +1,31 @@
+{
+  "name": "coffee_klout",
+  "description": "Klout API v2 wrapper, Coffee style.",
+  "version": "0.0.1",
+  "author": "Pierre-Élie Fauché <coffee_klout@pierre-elie.me>",
+  "homepage": "https://github.com/pierreliefauche/coffee_klout",
+  "engines": {
+    "node": ">= 0.8.1",
+    "npm": ">=1.1.49"
+  },
+  "keywords": [
+    "klout",
+    "coffee_klout",
+    "api"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "main": "./lib/index",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pierreliefauche/coffee_klout.git"
+  },
+  "dependencies": {
+    "request": ">=2.11.1",
+    "underscore": ">=1.3.3"
+  },
+}
