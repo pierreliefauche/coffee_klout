@@ -17,7 +17,7 @@ class Klout
   #
   # resource - String uri of the requested data, does not include hostname
   # callback - Function called on success/error
-  get: (resource, callback)->
+  _get: (resource, callback)->
     return unless callback
 
     # API key is always required
@@ -50,35 +50,55 @@ class Klout
   #                                 Beware that the returned value does NOT include the Klout ID but another network user ID.
   getKloutIdentity: (options, callback)->
     if options["twitter_id"]
-      @get "/identity.json/tw/#{options["twitter_id"]}", callback
+      path = "/tw/#{options["twitter_id"]}"
 
     else if options["twitter_screen_name"]
-      @get "/identity.json/twitter?screenName=#{options["twitter_screen_name"]}", callback
+      path = "/twitter?screenName=#{options["twitter_screen_name"]}"
 
     else if options["google_plus_id"]
-      @get "/identity.json/gp/#{options["google_plus_id"]}", callback
+      path = "/gp/#{options["google_plus_id"]}"
 
     else if options["third_party_id"]
-      @get "/identity.json/fb/#{options["third_party_id"]}", callback
+      path = "/fb/#{options["third_party_id"]}"
 
     else if options["klout_id"]
-      @get "/identity.json/klout/#{options["klout_id"]}", callback
+      path = "/klout/#{options["klout_id"]}"
+
+    @_get "/identity.json#{path}", callback if path
+
+  # Helper to abstract the call to getKloutIdentity to get the user’s Klout ID
+  #
+  # user     - String Klout ID or Hash same as `getKloutIdentity` options
+  # resource - String resource path containing ':kloutId' (replaced by the user’s Klout ID)
+  # callback - Function
+  _getUserResource: (userId, resource, callback)->
+    return unless callback
+
+    userId = 'klout_id': user unless typeof userId is 'object'
+
+    if userId['klout_id']
+      @_get resource.replace(':kloutId', userId['klout_id']), callback
+    else
+      @getKloutIdentity userId, (error, identity)=>
+        return callback error if error
+        @_get resource.replace(':kloutId', identity.id), callback
 
   # Following methods reflect Klout API methods
   # http://klout.com/s/developers/v2
   #
-  # the `kloutID` parameter is always required
+  # the `userId` parameter is always required and similar the `_getUserResource`
 
-  getUser: (kloutId, callback)->
-    @get "/user.json/#{kloutId}", callback
+  getUser: (userId, callback)->
+    @_getUserResource userId, "/user.json/:kloutId", callback
 
-  getScore: (kloutId, callback)->
-    @get "/user.json/#{kloutId}/score", callback
+  getScore: (userId, callback)->
+    @_getUserResource userId, "/user.json/:kloutId/score", callback
 
-  getTopics: (kloutId, callback)->
-    @get "/user.json/#{kloutId}/topics", callback
+  getTopics: (userId, callback)->
+    @_getUserResource userId, "/user.json/:kloutId/topics", callback
 
-  getInfluence: (kloutId, callback)->
-    @get "/user.json/#{kloutId}/influence", callback
+  getInfluence: (userId, callback)->
+    @_getUserResource userId, "/user.json/:kloutId/influence", callback
+
 
 exports.Klout = Klout
