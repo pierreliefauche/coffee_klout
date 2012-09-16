@@ -56,7 +56,6 @@ class Klout
 
       # API key is always required
       auth = "#{if ~resource.indexOf('?') then '&' else '?'}key=#{@key}"
-      console.log 'will request', resource
       request @baseUri + resource + auth, (error, response, body)=>
         return callback error if error
         switch response.statusCode
