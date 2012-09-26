@@ -16,6 +16,7 @@ When exposing those endpoints, coffee_klout allows a hash instead of a Klout ID.
 It internally makes an additional call to Klout to convert the identity.
 
 For a Twitter handle, the userId hash would be:
+
 ```javascript
 {
   "twitter_screen_name": "XXXXX"
@@ -23,6 +24,7 @@ For a Twitter handle, the userId hash would be:
 ```
 
 For a Twitter ID (unique numeric ID, different from the username):
+
 ```javascript
 {
   "twitter_id": "XXXXX"
@@ -30,6 +32,7 @@ For a Twitter ID (unique numeric ID, different from the username):
 ```
 
 For a Google+ ID:
+
 ```javascript
 {
   "google_plus_id": "XXXXX"
@@ -37,6 +40,7 @@ For a Google+ ID:
 ```
 
 For a Facebook Third-Party-ID:
+
 ```javascript
 {
   "third_party_id": "XXXXX"
@@ -44,6 +48,7 @@ For a Facebook Third-Party-ID:
 ```
 
 And for consistency with the Klout API:
+
 ```javascript
 {
   "klout_id": "XXXXX"
@@ -53,12 +58,14 @@ And for consistency with the Klout API:
 # Usage
 
 Instantiate a new instance with your Klout API key
+
 ```javascript
 var Klout = require('coffee_klout');
 var klout = new Klout({ key: '<YOUR_V2_KEY>' });
 ```
 
 Resolve an identity (useful to retrieve the Klout user ID)
+
 ```javascript
 klout.getKloutIdentity(userIdHash, function(error, identity){
   // returns a Klout identity as documented by the Klout API v2 docs
@@ -68,6 +75,7 @@ klout.getKloutIdentity(userIdHash, function(error, identity){
 
 The following methods are supported, where `klout_response` is an object as documented by the Klout API v2 docs
 and `klout_id_or_user_id_hash` is documented above:
+
 ```javascript
 klout.getUser(klout_id_or_user_id_hash, function(error, klout_response) {
 	// Returns a user object
@@ -95,6 +103,7 @@ Optional parameters can be passed to coffee_klout so it internally stores Klout 
 It can also optionally cache other API reponses.
 
 coffee_klout currently supports only Redis clients:
+
 ```javascript
 var redis = new require('redis').createClient();
 
