@@ -89,9 +89,9 @@ klout.getUserInfluence(klout_id_or_user_id_hash, function(error, klout_response)
 # Cache support
 
 Klout suggests to store indefinitely Klout IDs obtained after requesting Klout identities.
-With such cache or storage all calls basically cost 2 API calls because one is used to convert a Twitter/Facebook/Google+ user to a Klout user.
+Without such cache or storage all calls basically cost 2 API calls because one is used to convert a Twitter/Facebook/Google+ user to a Klout user.
 
-Optional parameters can be passed to `coffee_klout` so it internally stores Klout identities.
+Optional parameters can be passed to coffee_klout so it internally stores Klout identities.
 It can also optionally cache other API reponses.
 
 coffee_klout currently supports only Redis clients:

@@ -31,7 +31,10 @@ class Klout
     return callback "No cache set" unless @cache
     @cache.get key, (error, result)->
       return callback error or 'No cached value' if error or not result
-      callback null, JSON.parse(result)
+      try
+        callback null, JSON.parse(result)
+      catch ex
+        callback ex
 
   # Set an object in cache, if a cache is configured
   _setInCache: (key, value, ttl, callback)->
